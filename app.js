@@ -10,30 +10,42 @@ app.use(bodyParser.urlencoded({
 
 
 app.get('/', function (req, res) {
-    var transporter = nodemailer.createTransport({
-        service: 'gmail',
-        auth: {
+    let transporter = nodemailer.createTransport({
+        /*  host: "smtp.ethereal.email",
+          port: 587,*/
+        //  secure: false, // true for 465, false for other ports
+        service:'gmail',
+          auth: {
             user: process.env.USER,
             pass: process.env.PASS
-        }
-    });
-
-    var mailOptions = {
-        from: 'sautronoceane97440@gmail.com',
-        to: 'sautronoceane97440@gmail.com',
-        subject: 'Sending Email using Node.js',
-        text: `Hi Smartherd, thank you for your nice Node.js tutorials.
-                I will donate 50$ for this course. Please send me payment options.`
-        // html: '<h1>Hi Smartherd</h1><p>Your Messsage</p>'        
-    };
-
-    transporter.sendMail(mailOptions, function (error, info) {
-        if (error) {
+            },
+          tls:{
+            rejectUnauthorized:false
+          }
+        });
+        
+        var mailOptions = {
+          from:  process.env.FROM,
+          to:  process.env.TO,
+          subject: 'Sending Email using Node.js',
+          text: `Hi Smartherd, thank you for your nice Node.js tutorials.
+                  I will donate 50$ for this course. Please send me payment options.`
+          // html: '<h1>Hi Smartherd</h1><p>Your Messsage</p>'        
+        };
+        
+        transporter.sendMail(mailOptions, function(error, info){
+          if (error) {
             console.log(error);
-        } else {
+          } else {
             console.log('Email sent: ' + info.response);
-        }
-    });
+            console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
+            res.send("message envoyer")
+  
+          }
+        });
+   
+  
+ 
 });
 
 
