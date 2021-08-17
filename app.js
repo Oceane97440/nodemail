@@ -11,8 +11,8 @@ app.use(bodyParser.urlencoded({
 
 app.get('/', function (req, res) {
     let transporter = nodemailer.createTransport({
-        /*  host: "smtp.ethereal.email",
-          port: 587,*/
+         host: "https://nodemail-test.herokuapp.com/",
+          port: 3000,
         //  secure: false, // true for 465, false for other ports
         service:'gmail',
           auth: {
