@@ -17,9 +17,9 @@
   },
   "homepage": "https://github.com/Oceane97440/nodemail#readme",
   "dependencies": {
-    "body-parser": "^1.19.0",
     "express": "^4.17.1",
-    "nodemon": "^2.0.12",
-    "nodemailer": "^6.6.3"
+    "nodejs-nodemailer-outlook": "^1.2.4",
+    "nodemailer": "^6.6.3",
+    "nodemon": "^2.0.12"
   }
 }
